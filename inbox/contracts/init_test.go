@@ -1,14 +1,13 @@
 package contracts
 
 import (
-	"testing"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/core"
+	"github.com/ethereum/go-ethereum/crypto"
 	"math/big"
+	"testing"
 )
-
 
 //Test initial message gets set up correctly
 func TestGetMessage(t *testing.T) {
@@ -21,11 +20,11 @@ func TestGetMessage(t *testing.T) {
 	blockchain := backends.NewSimulatedBackend(alloc, 0)
 
 	//Deploy contract
-	_, _, contract, _ :=DeployInbox(
-			auth,
-			blockchain,
-			"Hello World",
-		)
+	_, _, contract, _ := DeployInbox(
+		auth,
+		blockchain,
+		"Hello World",
+	)
 
 	// commit all pending transactions
 	blockchain.Commit()
@@ -33,6 +32,5 @@ func TestGetMessage(t *testing.T) {
 	if got, _ := contract.Message(nil); got != "Hello World" {
 		t.Errorf("Expected message to be: Hello World. Go: %s", got)
 	}
-
 
 }

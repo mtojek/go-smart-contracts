@@ -1,14 +1,13 @@
 package contracts
 
 import (
-	"testing"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/core"
+	"github.com/ethereum/go-ethereum/crypto"
 	"math/big"
+	"testing"
 )
-
 
 // Test message gets updated correctly
 func TestSetMessage(t *testing.T) {
@@ -22,7 +21,7 @@ func TestSetMessage(t *testing.T) {
 
 	//Deploy contract
 
-	_, _, contract, _ :=DeployInbox(
+	_, _, contract, _ := DeployInbox(
 		auth,
 		blockchain,
 		"Hello World",
@@ -31,9 +30,9 @@ func TestSetMessage(t *testing.T) {
 	// commit all pending transactions
 	blockchain.Commit()
 	contract.SetMessage(&bind.TransactOpts{
-		From:auth.From,
-		Signer:auth.Signer,
-		Value: nil,
+		From:   auth.From,
+		Signer: auth.Signer,
+		Value:  nil,
 	}, "Hello from Mars")
 
 	blockchain.Commit()

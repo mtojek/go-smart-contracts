@@ -1,17 +1,17 @@
 package main
 
 import (
-	"github.com/ethereum/go-ethereum/ethclient"
-	"log"
-	"github.com/mtojek/go-smart-contracts/inbox/contracts"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"strings"
 	"fmt"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/mtojek/go-smart-contracts/inbox/contracts"
+	"log"
+	"strings"
 )
 
-const key  = `--json file--`
+const key = `--json file--`
 
-func main(){
+func main() {
 	// connect to an ethereum node  hosted by infura
 	blockchain, err := ethclient.Dial("https://rinkeby.infura.io/aa872bbe81694920ae9544a191a39999")
 
@@ -25,7 +25,7 @@ func main(){
 	if err != nil {
 		log.Fatalf("Failed to create authorized transactor: %v", err)
 	}
-	address, _, _, _:= contracts.DeployInbox(
+	address, _, _, _ := contracts.DeployInbox(
 		auth,
 		blockchain,
 		"Hello World",
